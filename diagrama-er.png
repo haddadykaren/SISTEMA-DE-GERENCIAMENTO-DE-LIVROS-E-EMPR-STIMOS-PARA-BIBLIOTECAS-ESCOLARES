@@ -1,0 +1,46 @@
+from graphviz import Digraph
+
+# Criar o diagrama ER com base nas tabelas descritas
+dot = Digraph(comment='Diagrama ER - Sistema de Biblioteca')
+dot.attr(rankdir='LR')
+
+# Tabela Livros
+dot.node('Livros', '''{
+  Livros |
+  id: INT (PK)\\l
+  titulo: VARCHAR\\l
+  autor: VARCHAR\\l
+  ano_publicacao: INT\\l
+}''', shape='record')
+
+# Tabela Usuarios
+dot.node('Usuarios', '''{
+  Usuarios |
+  id: INT (PK)\\l
+  nome: VARCHAR\\l
+  email: VARCHAR (UNIQUE)\\l
+  telefone: VARCHAR\\l
+}''', shape='record')
+
+# Tabela Emprestimos
+dot.node('Emprestimos', '''{
+  Emprestimos |
+  id: INT (PK)\\l
+  id_livro: INT (FK)\\l
+  id_usuario: INT (FK)\\l
+  data_emprestimo: DATE\\l
+  data_devolucao: DATE\\l
+}''', shape='record')
+
+# Relacionamentos
+dot.edge('Livros', 'Emprestimos', label='1:N')
+dot.edge('Usuarios', 'Emprestimos', label='1:N')
+
+# Renderizar como imagem
+image_path = '/mnt/data/diagrama-er.png'
+dot.render(image_path, format='png', cleanup=True)
+image_path
+mv /caminho/para/diagrama-er.png diagramas/
+git add diagramas/diagrama-er.png
+git commit -m "Adiciona diagrama ER do banco de dados"
+git push origin main
