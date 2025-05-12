@@ -1,0 +1,17 @@
+Sistema de gerenciamento de livros e empréstimos com SQL e Git"
+
+
+sistema-biblioteca/
+│
+├── sql/
+│   ├── script-criacao.sql
+│   ├── consultas.sql
+│
+├── diagramas/
+│   └── er-diagrama.png
+│
+├── doc/
+│   └── relatorio.md  (ou relatorio.docx/.pdf)
+│
+├── README.md
+└── .gitignore
